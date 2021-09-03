@@ -12,7 +12,7 @@ router.post('/', (req, res) => {
   const originalUrl = req.body.originalUrl
   const shortUrl = generateUrl(originalUrl)
   return UrlData.create({ originalUrl, shortUrl })
-    .then(() => res.render('index', { originalUrl }))
+    .then(() => res.render('index', { originalUrl, shortUrl }))
     .then(() => console.log(originalUrl, shortUrl))
     .catch(error => console.log(error))
 })
