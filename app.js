@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 3000
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
+app.use(express.urlencoded({ extended: true })) // setting body-parser
 app.use(routes)
 
 app.listen(PORT, () => {
