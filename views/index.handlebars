@@ -6,16 +6,16 @@
       <form action="/" method="POST">
         <div class="input-group">
           <input name="originalUrl" type="url" class="form-control " id="originalUrl" placeholder="Input URL here..."
-            value="{{ originalUrl }}" required>
+            value="{{ urlData.originalUrl }}" required>
           <div class="input-group-append">
             <button class="btn btn-secondary" type="submit">Shorten</button>
           </div>
         </div>
       </form>
-      {{#if originalUrl}}
+      {{#if urlData.originalUrl}}
       <div class="alert alert-light my-3" style="background-color:#ABD0CE" role="alert">
         <span>Success! Please use this link:</span>
-        <a href="{{ originalUrl }}" name="shortUrl" id="shortUrl" style="text-decoration:none;" >{{shortUrl}}</a>
+        <a href="{{ urlData.originalUrl }}" name="shortUrl" id="shortUrl" style="text-decoration:none;" >{{urlData.shortUrl}}</a>
         <button class="btnCopy btn btn-light mx-2">COPY</button>
       </div>
       {{/if}}
