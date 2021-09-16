@@ -14,7 +14,7 @@ router.post('/', async(req, res) => {
     let urlData = await UrlData.findOne({ originalUrl: originalUrl }).lean()
     
     if (urlData === null) {
-      const shortUrl = generateUrl(originalUrl)
+      const shortUrl = await generateUrl(originalUrl)
       await UrlData.create({ originalUrl, shortUrl })
       urlData = await UrlData.findOne({ originalUrl }).lean()
     }
