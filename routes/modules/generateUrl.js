@@ -14,7 +14,7 @@ async function generateUrl() {
     }
     const urlLength = 5
     let collection = []
-    let shortUrl = 'https://chi-url-shortener.herokuapp.com/'
+    let shortUrl = ''
     Object.values(data).forEach(value => {
       collection = collection.concat(value.split(''))
     })
