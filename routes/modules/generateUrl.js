@@ -1,25 +1,13 @@
 const UrlData = require('../../models/url')
 
-function sample(arr) {
-  let index = Math.floor(Math.random() * arr.length)
-  return arr[index]
-}
-
 async function generateUrl() {
   try {
-    const data = {
-      lowerCaseLetters: 'abcdefghijklmnopqrstuvwxyz',
-      upperCaseLetters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-      numbers: '1234567890'
-    }
     const urlLength = 5
-    let collection = []
     let shortUrl = ''
-    Object.values(data).forEach(value => {
-      collection = collection.concat(value.split(''))
-    })
+    const data = 'abcdefghijklmnopqrstuvwxyz' + 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' + '1234567890'
+
     for (let i = 1; i <= urlLength; i++ ) {
-      shortUrl += sample(collection)
+      shortUrl += data[Math.floor(Math.random() * data.length)]
     }
     let urlData = await UrlData.findOne({shortUrl}).lean()
     if (urlData === null) {

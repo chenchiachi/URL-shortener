@@ -18,21 +18,20 @@ router.post('/', async(req, res) => {
       await UrlData.create({ originalUrl, shortUrl })
       urlData = await UrlData.findOne({ originalUrl }).lean()
     }
-    urlData.shortUrl = `https://kiki-url-shortener.herokuapp.com/${urlData.shortUrl}`
-    
+    urlData.shortUrl = req.get('origin') + '/' + urlData.shortUrl
     res.render('index', { urlData })
   } catch (error) {
       console.log(error)
   }
 })
 
+router.get('/favicon.ico', (req, res) => res.status(204));
+
 router.get('/:shortUrl', async(req, res) => {
   try {
     const shortUrl = req.params.shortUrl
     const urlData = await UrlData.findOne({ shortUrl }).lean()
     res.redirect(urlData.originalUrl)
-    console.log(urlData)
-
   } catch (error) {
     console.log(error)
   }
